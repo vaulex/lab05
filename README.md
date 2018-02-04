@@ -1,4 +1,4 @@
-https://travis-ci.org/Alexey01M/lab05.svg?branch=master
+https://travis-ci.org/vaulex/lab05.svg?branch=master
 <фрагмент_вставки_значка>
 [![Build Status](https://travis-ci.org/Alexey01M/lab05.svg?branch=master)](https://travis-ci.org/Alexey01M/lab05)
 ## Laboratory work V
@@ -11,21 +11,21 @@ $ open https://travis-ci.org
 
 ## Tasks
 
-- [X] 1. Авторизоваться на сервисе **Travis CI** с использованием **GitHub** аккаунта
-- [X] 2. Создать публичный репозиторий с названием **lab05** на сервисе **GitHub**
-- [X] 3. Ознакомиться со ссылками учебного материала
-- [X] 4. Включить интеграцию сервиса **Travis CI** с созданным репозиторием
-- [X] 5. Получить токен для **Travis CLI** с правами **repo** и **user**
-- [X] 6. Получить фрагмент вставки значка сервиса **Travis CI** в формате **Markdown**
-- [X] 7. Установить [**Travis CLI**](https://github.com/travis-ci/travis.rb#installation)
-- [X] 8. Выполнить инструкцию учебного материала
-- [X] 9. Составить отчет и отправить ссылку личным сообщением в **Slack**
+- [ ] 1. Авторизоваться на сервисе **Travis CI** с использованием **GitHub** аккаунта
+- [ ] 2. Создать публичный репозиторий с названием **lab05** на сервисе **GitHub**
+- [ ] 3. Ознакомиться со ссылками учебного материала
+- [ ] 4. Включить интеграцию сервиса **Travis CI** с созданным репозиторием
+- [ ] 5. Получить токен для **Travis CLI** с правами **repo** и **user**
+- [ ] 6. Получить фрагмент вставки значка сервиса **Travis CI** в формате **Markdown**
+- [ ] 7. Установить [**Travis CLI**](https://github.com/travis-ci/travis.rb#installation)
+- [ ] 8. Выполнить инструкцию учебного материала
+- [ ] 9. Составить отчет и отправить ссылку личным сообщением в **Slack**
 
 ## Tutorial
 
 ```ShellSession
-$ export GITHUB_USERNAME=Alexey01M
-$ export GITHUB_TOKEN=b7358e5d4931d272e6d15e31b1a05b9ff762fe59
+$ export GITHUB_USERNAME=<имя_пользователя>
+$ export GITHUB_TOKEN=<полученный_токен>
 ```
 
 ```ShellSession
