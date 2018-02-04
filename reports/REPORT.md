@@ -1,131 +1,108 @@
-## Лабораторная работа №3. Отчет.
+[![Build Status](https://travis-ci.org/vaulex/lab05.svg?branch=master)](https://travis-ci.org/vaulex/lab05)
+## Лабораторная работа №5. Отчет.
 
 ## Задание на лабораторную работу:
 
-1. Создать публичный репозиторий с названием lab03 и с лиценцией MIT 
-2. Ознакомиться со ссылками учебного материала 
-3. Выполнить инструкцию учебного материала 
-4. Составить отчет и отправить ссылку личным сообщением в Slack 
+[X] 1. Авторизоваться на сервисе **Travis CI** с использованием **GitHub** аккаунта
+13
+[X] 2. Создать публичный репозиторий с названием **lab05** на сервисе **GitHub**
+14
+[X] 3. Ознакомиться со ссылками учебного материала
+15
+[X] 4. Включить интеграцию сервиса **Travis CI** с созданным репозиторием
+16
+[X] 5. Получить токен для **Travis CLI** с правами **repo** и **user**
+17
+- [X] 6. Получить фрагмент вставки значка сервиса **Travis CI** в формате **Markdown**
+18
+- [X] 7. Установить [**Travis CLI**](https://github.com/travis-ci/travis.rb#installation)
+19
+- [X] 8. Выполнить инструкцию учебного материала
+20
+- [X] 9. Составить отчет и отправить ссылку личным сообщением в **Slack**
 
 ## Выполнение работы.
 	
 В соответствии с последовательностью, определенной заданием на лабораторную работу, были выполнены следующие действия:
-1. Проведено ознакомление по приведенным ссылкам со следующими материалами по GitHub, Bitbucket, Gitlab, LearnGitBranching.
-2. Для успешного выполнения аздания создан новый пустой репозиторий lab03 с лицензией MIT, попутно создан файл .gitignore 
-3. Выполнена следующая последовательность команд:
-
+-[X] 1. Выполнена авторизация на сервисе **Travis CI** с использованием Github-аккаунта.
+-[X] 2. Для успешного выполнения задания создан новый пустой репозиторий lab05 с лицензией MIT.
+-[X] 3. Проведено ознакомление по приведенным ссылкам со следующими материалами по Travis Client, AppVeyour, GitLab CI.
+-[X] 4. Включена инеграция репозитория **lab05** с сервисом **Travis CI**.
+-[X] 5. Создан токен
+```ShellSession
+cffee121dcde080d6e766406b67a984c9aa4bc71
+```
+для **Travis CLI** с правами repo и user.
+-[X] 6. Получен код значка сервиса **Travis CI** в формате Markdown:
+```ShellSession
+[![Build Status](https://travis-ci.org/vaulex/lab05.svg?branch=master)](https://travis-ci.org/vaulex/lab05)
+```
+-[X] 7. Установлен Travis CLI.
+-[X] 8. Выполнена следующая последовательность команд:
 
 ## Tutorial
 ```ShellSession
 $ export GITHUB_USERNAME=vaulex
-$ export GITHUB_EMAIL=krasauchek-s-iy@ya.ru
-$ alias edit=subl
+$ export GITHUB_TOKEN=ke2f610e566b6bff59c6534ca260455c8e91baaa6
 $ cd ${GITHUB_USERNAME}/workspace
+$ pushd .
 $ source scripts/activate
-$ mkdir projects/lab03 && cd projects/lab03
-$ git init
-$ git config --global user.name ${GITHUB_USERNAME}
-$ git config --global user.email ${GITHUB_EMAIL}
-$ git config -e --global
-$ git remote add origin https://github.com/${GITHUB_USERNAME}/lab03.git
-$ git pull origin master
-$ touch README.md
-$ git status
+
+$ \curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles
+$ echo "source $HOME/.rvm/scripts/rvm" >> scripts/activate
+$ rvm autolibs disable
+$ rvm install ruby-2.4.2
+$ rvm use 2.4.2 --default
+$ gem install travis
+
+$ git clone https://github.com/${GITHUB_USERNAME}/lab04 projects/lab05
+$ cd projects/lab05
+$ git remote remove origin
+$ git remote add origin https://github.com/${GITHUB_USERNAME}/lab05
+
+$ cat >> .travis.yml <<EOF
+
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
+EOF
+
+$ travis login --github-token ${GITHUB_TOKEN}
+$ travis lint
+
+$ ex -sc '1i|<фрагмент_вставки_значка>' -cx README.md
+
+$ git add .travis.yml
 $ git add README.md
-$ git commit -m"added README.md"
+$ git commit -m"added CI"
 $ git push origin master
-
-$ git pull origin master
-$ git log
-$ mkdir sources
-$ mkdir include
-$ mkdir examples
-$ cat > sources/print.cpp <<EOF
-#include <print.hpp>
-
-void print(const std::string& text, std::ostream& out) {
-  out << text;
-}
-
-void print(const std::string& text, std::ofstream& out) {
-  out << text;
-}
-EOF
-$ cat > include/print.hpp <<EOF
-#include <string>
-#include <fstream>
-#include <iostream>
-
-void print(const std::string& text, std::ostream& out = std::cout);
-void print(const std::string& text, std::ofstream& out);
-EOF
-$ cat > examples/example1.cpp <<EOF
-#include <print.hpp>
-
-int main(int argc, char** argv) {
-  print("hello");
-}
-EOF
-$ cat > examples/example2.cpp <<EOF
-#include <fstream>
-#include <print.hpp>
-
-int main(int argc, char** argv) {
-  std::ofstream file("log.txt");
-  print(std::string("hello"), file);
-}
-EOF
-$ edit README.md
-$ git status
-$ git add .
-$ git commit -m"added sources"
-$ git push origin master
-```
-Результат выполнения команды git log:
-```ShellSession
-commit b946fd89b43ead40423c0bac3e40270b72f8a987
-Author: vaulex <krasauchek-s-iy@ya.ru>
-Date:   Wed Dec 13 18:14:51 2017 +0300
-
-    добавлен .gitignore
-
-commit 924b2fa7e8ffda3df2f95347e5fcad7d67c04f0a
-Author: vaulex <krasauchek-s-iy@ya.ru>
-Date:   Wed Dec 13 18:08:40 2017 +0300
-
-    added README.md
-
-commit d0ff50b101152969e3ab8fb7dacc833525b45fab
-Author: vaulex <34100081+vaulex@users.noreply.github.com>
-Date:   Wed Dec 13 18:03:13 2017 +0300
-
-    Initial commit
+$ travis lint
+$ travis accounts
+$ travis sync
+$ travis repos
+$ travis enable
+$ travis whatsup
+$ travis branches
+$ travis history
+$ travis show
 ```
 ## Report
 ```ShellSession
-$ cd ~/workspace/labs/
-$ export LAB_NUMBER=03
-$ git clone https://github.com/tp-labs/lab${LAB_NUMBER}.git tasks/lab${LAB_NUMBER}
+$ popd
+$ export LAB_NUMBER=05
+$ git clone https://github.com/tp-labs/lab${LAB_NUMBER} tasks/lab${LAB_NUMBER}
 $ mkdir reports/lab${LAB_NUMBER}
 $ cp tasks/lab${LAB_NUMBER}/README.md reports/lab${LAB_NUMBER}/REPORT.md
 $ cd reports/lab${LAB_NUMBER}
 $ edit REPORT.md
 $ gistup -m "lab${LAB_NUMBER}"
 ```
-
-## В результате выполнения блока Tutorial:
-
-осуществлено наполнение репозитория lab03 файлами, содержащими исходные коды с сохранение структуры каталогов проекта определены конфигурационные;
-осуществлено редактирование файла readme.md и коммит изменения в репозиторий.
-	
-## В результате выполнения блока Report:
-
-с git-репозитория https://github.com/tp-labs/lab03 сделана копия задания в локальный проект в папку tasks/lab03
-файл readme скопированный из локальной копии репозитория tp-lab перемещен в папку report локального проекта;
-файла readme отредактирован после чего файл выгружен в git-репозиторий.
-	 
-Составлен отчет о работе.
+-[X] 8. Составлен отчет о работе в формате MD, ссылка отправлена в **slack**.
 
 	
 ## Выводы:
-В ходе проделанной работы проведена ознакомительная работа с работой git-репозитория, команд push/pull/commit  и связанный программ терминального окна Unix-среды.
+В ходе проделанной работы проведена ознакомительная работа с работой сервиса **Travis CI**, осуществлена его интеграция с репозиторием на **Github**, выполнена автоматизаированная сборка проекта, получен значек сервиса **Travis CI**.
